@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.provider.Settings;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
@@ -34,6 +35,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AbsListView;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -466,6 +468,54 @@ public class RunRead extends Activity{
 				});
 				dialog=dialogContent;
 			break;
+
+            case ID_DIALOG_BRIGHTNESS:
+                LayoutInflater inflaterDialog = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+
+                final View layoutDialog = inflaterDialog.inflate(R.layout.dialog_setbrightness, (ViewGroup)findViewById(R.id.dialogfontroot));
+                SeekBar seeksbrightness=(SeekBar)layoutDialog.findViewById(R.id.seeksetbrightness);
+                seeksbrightness.setMax(9);
+                seeksbrightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        ((CheckBox)layoutDialog.findViewById(R.id.checkboxautobrightness)).setChecked(false);
+                        Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
+                        WindowManager.LayoutParams lp = getWindow().getAttributes();
+                        lp.screenBrightness = .1f * i;
+
+                        getWindow().setAttributes(lp);
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+
+                AlertDialog.Builder dialogBrightness = new AlertDialog.Builder(this);
+                dialogBrightness.setTitle("Brightness control")
+                .setView(layoutDialog)
+                .setPositiveButton("Применить", new OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        CheckBox mAutoBrightnessChkBx = (CheckBox)layoutDialog.findViewById(R.id.checkboxautobrightness);
+                        if (mAutoBrightnessChkBx.isChecked()) {
+                            Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC);
+                            WindowManager.LayoutParams lp = getWindow().getAttributes();
+                            lp.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
+                            getWindow().setAttributes(lp);
+                        }
+                        dialog.cancel();
+                    }
+
+                });
+                dialog = dialogBrightness;
+            break;
 		
 		}
 		
@@ -518,8 +568,9 @@ public void createViewDialog(View v){
 		break;
 	
 	case R.id.butsetbright:
-	//TODO Create Brightness dialog	
-		Toast.makeText(this, "Create Brightness dialog", Toast.LENGTH_SHORT).show();
+	//TODO Create Brightness dialog
+        this.showDialog(ID_DIALOG_BRIGHTNESS);
+		//Toast.makeText(this, "Create Brightness dialog", Toast.LENGTH_SHORT).show();
 		break;
 	
 	}
