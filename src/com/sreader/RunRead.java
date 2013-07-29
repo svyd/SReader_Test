@@ -859,11 +859,14 @@ private void setColorSheme(){
 		        }
 		    	@Override
 		    	protected String doInBackground(String... urls) {
-		    	
+
+
 		    		    book=new Book(NAME_FORGET_FILE, DIR_FORGET_FILE);
 		    	
 		    		    Log.v("dir", NAME_FORGET_FILE+" "+DIR_FORGET_FILE);
 		    		    		return "";
+
+
 		    	}
 		    			    	
 		    	@Override
@@ -889,7 +892,7 @@ private void setColorSheme(){
 		
 			    	@Override
 			    	protected String doInBackground(String... urls) {
-			    	
+
 			    		TextView textview=mAdapter.getTextView();
 
 			    		   
@@ -900,6 +903,8 @@ private void setColorSheme(){
 			        	int set_id_word=0;
 			        	int set_col_word=0;
 			        	try{
+                            int widthDisplay = Utils.getWidthDisplay(context)
+                                    -textview.getPaddingLeft()-textview.getPaddingLeft();
 			        		for(Chapter curentchapter: book){
 			        			words.add(curentchapter.getName()+"#");
 			        			setChapters.add(new SetChapter(set_id_chapter, set_id_word, set_col_word));
@@ -914,8 +919,7 @@ private void setColorSheme(){
 			        				while(!checkAdd) {
 			        					if (i+1<count_words) {
 			        				
-			        				if(!(Utils.getTextWidth(textview, strToAdd+curentchapter.getWord(i+1), Utils.getWidthDisplay(context)
-			        						-textview.getPaddingLeft()-textview.getPaddingLeft()))) {
+			        				if(!(Utils.getTextWidth(textview, strToAdd+curentchapter.getWord(i+1), widthDisplay))) {
 			        					i++;
 			        					set_col_word++;
 			        					strToAdd=strToAdd+" "+curentchapter.getWord(i);
@@ -955,7 +959,6 @@ private void setColorSheme(){
 			    				handler.removeCallbacks(updateTimeTask);
 					    		handler.postDelayed(updateTimeTask, time);
 			    			}
-	  		    		
 			    	}
 			    	
 			    } 
