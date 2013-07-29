@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, DisplayTime!</string>
+    <string name="app_name">SReader</string>
+    <string name="dialog_setfont_title">Настройка шрифта</string>
+    <string name="dialog_setbritghn_title">Яркость экрана</string>
+    <string name="dialog_sort_title">Сортировка</string>
+    <string name="dialog_set_colorsheme">Цветовая схема</string>
+    <string-array name="name_font">
+        <item >С засечками</item>
+        <item >Без засечек</item>
+        <item >Брусковый</item>
+    </string-array>
+    <string-array name="name_sort">
+        <item >Название</item>
+        <item >Автор</item>
+        <item >Жанр</item>
+        <item >Последние открытые</item>
+        <item >Последние добавленные</item>
+        
+    </string-array>
+    <string-array name="color_sheme">
+        <item >Сепия</item>
+        <item >Темная</item>
+        <item >Светлая</item>
+        
+    </string-array>
+</resources>
+

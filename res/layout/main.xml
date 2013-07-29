@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android" 
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical" 
+	    android:background="@drawable/bg_ligth_fill2"
+	    android:id="@+id/linlaybase">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" android:gravity="center" android:layout_weight="160">
+
+     <!--    <TextView
+            android:id="@+id/times"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" /> -->
+
+<!--         <SeekBar
+            android:id="@+id/vertical_Seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+ -->
+
+        <LinearLayout
+            android:id="@+id/linlayspeedtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" android:background="@drawable/bg_speedtext_light" android:gravity="center">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#555555" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent" android:layout_weight="40">
+
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="vertical" android:layout_weight="160">
+		</LinearLayout>
+
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="vertical" android:layout_weight="50" android:gravity="center">
+
+			<TextView
+			    android:id="@+id/time"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:textColor="#000"
+			    android:textSize="30sp"
+			    android:textStyle="bold" android:gravity="center"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="vertical" android:layout_weight="160" android:gravity="center" android:id="@+id/linlayseek">
+
+		<!--   	<com.sreader.widget.VerticalSeekBar1
+			    android:id="@+id/vertical_Seekbar"
+			    android:layout_width="wrap_content"
+			    android:layout_height="200dip"/>
+			    
+			     -->
+ <com.sreader.widget.VerticalSeekBar
+	       android:id="@+id/vertical_Seekbar"
+	       android:layout_width="wrap_content"
+	       android:layout_height="200dp"
+	       
+	       >
+</com.sreader.widget.VerticalSeekBar>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_weight="165"
+	    android:orientation="vertical" android:gravity="center">
+
+		<LinearLayout
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical" android:background="@drawable/button_foot">
+		</LinearLayout>
+
+	</LinearLayout>
+
+	</LinearLayout>
+	
+
+

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+     <RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:id="@+id/dialogfontroot" >
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical" android:layout_marginRight="10dp" android:layout_marginLeft="10dp" android:layout_marginTop="5dp">
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content" >
+
+                 <TextView
+                     android:id="@+id/textView1"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:text="A" android:typeface="serif" android:textStyle="bold" android:layout_weight="50" android:gravity="left"/>
+
+                 <TextView
+                     android:id="@+id/textView2"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:text="A"
+                     android:textAppearance="?android:attr/textAppearanceLarge" android:textStyle="bold" android:layout_weight="50" android:gravity="right" android:typeface="serif"/>
+
+             </LinearLayout>
+
+             <SeekBar
+                 android:id="@+id/seeksetsize"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content" android:max="100"/>
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="5dp" >
+
+                 <TextView
+                     android:id="@+id/TextView02"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="50"
+                     android:gravity="left"
+                     android:text="AA"
+                     android:textStyle="bold"
+                     android:typeface="serif" />
+
+                 <TextView
+                     android:id="@+id/TextView03"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="50"
+                     android:gravity="right"
+                     android:text="AAAA"
+                     android:textStyle="bold"
+                     android:typeface="serif" />
+
+             </LinearLayout>
+
+             <SeekBar
+                 android:id="@+id/seeksetsh_o"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:max="100" />
+
+         </LinearLayout>
+
+     </RelativeLayout>
+

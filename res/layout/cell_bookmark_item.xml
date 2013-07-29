@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:background="@drawable/bg_ligth_fill2"
+     android:gravity="center_vertical"
+     android:orientation="vertical" >
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_vertical"
+         android:gravity="center_vertical"
+         android:orientation="horizontal" >
+
+         <LinearLayout
+             android:id="@+id/linearLayout1"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="622"
+             android:gravity="center_vertical"
+             android:orientation="vertical" >
+
+             <TextView
+                 android:id="@+id/item_title"
+                 style="@style/Title"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="10dp"
+                 android:ellipsize="end"
+                 android:freezesText="true"
+                 android:lines="1"
+                 android:paddingLeft="5dp"
+                 android:paddingRight="5dp"
+                 android:text="Title" />
+
+             <TextView
+                 android:id="@+id/item_phrase"
+                 style="@style/ContentTtext"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="5dp"
+                 android:ellipsize="end"
+                 android:freezesText="true"
+                 android:lines="1"
+                 android:paddingLeft="5dp"
+                 android:paddingRight="5dp" />
+
+             <TextView
+                 android:id="@+id/item_date"
+                 style="@style/ContentTtext"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginBottom="10dp"
+                 android:layout_marginTop="5dp"
+                 android:paddingLeft="5dp"
+                 android:paddingRight="5dp"
+                 android:text="Дата" />
+
+         </LinearLayout>
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:background="@drawable/hrz_hr"
+         android:orientation="vertical" >
+
+     </LinearLayout>
+
+</LinearLayout>

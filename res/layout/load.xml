@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+         <LinearLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/linearLayout1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" >
+              <RelativeLayout
+         android:id="@+id/relativeLayout1"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent" >
+
+                  <LinearLayout
+                      android:id="@+id/linearLayout2"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:background="@drawable/bg_ligth_fill2" android:orientation="vertical" android:gravity="center">
+
+                      <ImageView
+                          android:id="@+id/imageView1"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:src="@drawable/splash_logo" />
+
+                  </LinearLayout>
+
+         <ProgressBar
+             android:id="@+id/progressbarinit"
+             style="?android:attr/progressBarStyleSmall"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentBottom="true"
+             android:layout_centerHorizontal="true"
+             android:layout_marginBottom="50dp" />
+
+         <TextView
+             android:id="@+id/textView1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignTop="@+id/progressbarinit"
+             android:layout_centerHorizontal="true"
+             android:text="Подождите, идет загрузка" android:layout_marginTop="30dp" style="@style/Splashtext"/>
+
+     </RelativeLayout>
+         </LinearLayout>
+
+     
+
+

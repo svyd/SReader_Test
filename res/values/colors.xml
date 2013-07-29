@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tech_white">#ffFFFFFF</color>
+    <color name="tech_black">#ff000000</color>
+    <color name="tech_selected">#fff3a010</color>
+    
+    
+</resources>
