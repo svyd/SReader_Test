@@ -167,6 +167,30 @@ public class ItemsOpenHelper extends SQLiteOpenHelper {
 	    db.close();
 	    return items;				
 	}
+
+    public ArrayList<Item> findItems(String mItemName) {
+        ArrayList <Item> items = new ArrayList<Item>();
+
+        String selectQuery = "SELECT  * FROM " + ITEMS_TABLE_NAME + " WHERE " + TITLE + " LIKE '" + mItemName + "%';" ;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+
+
+        if (cursor.moveToFirst()) {
+            do {
+
+                ContentValues values = new ContentValues();
+                DatabaseUtils.cursorRowToContentValues(cursor, values);
+                Item item = new Item(values);
+                items.add(item);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return items;
+    }
 	
 	public int getItemsCount() {
 		String countQuery = "SELECT  * FROM " + ITEMS_TABLE_NAME;

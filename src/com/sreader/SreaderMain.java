@@ -17,8 +17,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -26,6 +29,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -56,6 +60,7 @@ public class SreaderMain extends Activity{
 	 ListView lv;
 	 private FileManager filemanager;
 	 boolean controlStop=false;
+    Handler uiHandler;
 	 
 	 EditText input;
 	String DIR_MNT=Environment.getExternalStorageDirectory().toString();
@@ -74,7 +79,7 @@ public class SreaderMain extends Activity{
 
 	private ItemSearch[] fileList;
 	private File path = new File(Environment.getExternalStorageDirectory() + "");
-	String set_title="Путь: "+path.getAbsolutePath();
+	String set_title="пїЅпїЅпїЅпїЅ: "+path.getAbsolutePath();
 	private String chosenFile;
 	private static final int DIALOG_LOAD_FILE = 1000;
     int sort_type=0;
@@ -95,7 +100,9 @@ public class SreaderMain extends Activity{
     }
 	
 	private void initialVariable(){
-		
+
+        uiHandler = new Handler();
+
 		Preference=new MyPreferences(this);
 		if (Preference.getSpeedText()==0) Preference.setDefaultPreferences();
 		dbHelper = new ItemsOpenHelper(getApplicationContext());
@@ -212,7 +219,7 @@ public class SreaderMain extends Activity{
 
 		switch (id) {
 		case DIALOG_LOAD_FILE:
-			set_title="Путь: "+path.getAbsolutePath();
+			set_title="пїЅпїЅпїЅпїЅ: "+path.getAbsolutePath();
 			builder.setTitle(set_title);
 			
 			builder.setAdapter(adapter_search, new DialogInterface.OnClickListener() {
@@ -238,7 +245,7 @@ public class SreaderMain extends Activity{
 
 					else { 
 						
-						if (chosenFile.equalsIgnoreCase("Вверх") && !sel.exists()) {
+						if (chosenFile.equalsIgnoreCase("пїЅпїЅпїЅпїЅпїЅ") && !sel.exists()) {
 
 				
 						String s = str_dir.remove(str_dir.size() - 1);
@@ -277,7 +284,7 @@ public class SreaderMain extends Activity{
 				}
 				
 			})
-			.setNegativeButton("Отмена", new OnClickListener(){
+			.setNegativeButton("пїЅпїЅпїЅпїЅпїЅпїЅ", new OnClickListener(){
 
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
@@ -329,7 +336,7 @@ public class SreaderMain extends Activity{
 				for (int i = 0; i < fileList.length; i++) {
 					temp[i + 1] = fileList[i];
 				}
-				temp[0] = new ItemSearch("Вверх", R.drawable.directory_up);
+				temp[0] = new ItemSearch("пїЅпїЅпїЅпїЅпїЅ", R.drawable.directory_up);
 				fileList = temp;
 			}
 		} else {
@@ -381,8 +388,8 @@ public class SreaderMain extends Activity{
     		checkNewFiles=true;
     		checkNewFilesToAdd=false;
     		if (!SWITCHER_VISIBLE){
-    		dialogSearch.setTitle("Импорт eBooks");
-    		dialogSearch.setMessage("Выполняется поиск...");
+    		dialogSearch.setTitle("пїЅпїЅпїЅпїЅпїЅпїЅ eBooks");
+    		dialogSearch.setMessage("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ...");
     		dialogSearch.show();	
     		}
         }
@@ -427,11 +434,11 @@ public class SreaderMain extends Activity{
     				if (cur.endsWith(".fb2")) {
     					
     					addInfoFb2FileToDb(cur, DIR_MNT+"/"+DIR_BOOKS, DIR_MNT+"/"+DIR_BOOKS+"/Images");
-    					publishProgress("Добавлен: "+cur);
+    					publishProgress("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: "+cur);
     					
     				}
     				else if (cur.endsWith(".fb2.zip")){ 
-    					publishProgress("Распаковка: "+cur);
+    					publishProgress("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: "+cur);
     					ArrayList<String> fileList=new ArrayList<String>(); 
     					
     					UnZip  UnZip=new  UnZip(DIR_MNT+"/"+DIR_BOOKS+"/"+cur, DIR_MNT+"/"+Constants.DEFAULT_DIR_BOOKS+"/", fileList);
@@ -441,19 +448,19 @@ public class SreaderMain extends Activity{
     					
     					for(String curstr:fileList) {
     						addInfoFb2FileToDb(curstr, DIR_MNT+"/"+Constants.DEFAULT_DIR_BOOKS+"/", DIR_MNT+"/"+DIR_BOOKS+"/Images");
-        					publishProgress("Добавлен: "+curstr);
+        					publishProgress("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: "+curstr);
     						Log.v("fileList", curstr);
     					}
     				}
     				else
     					if (cur.endsWith(".txt")) {
     					addInfoTXTFileToDb(cur, DIR_MNT+"/"+DIR_BOOKS, "");
-    					publishProgress("Добавлен: "+cur);
+    					publishProgress("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: "+cur);
     					}
     					
     					else  if (cur.endsWith(".html") || cur.endsWith(".htm")) {
     					addInfoHTMLFileToDb(cur, DIR_MNT+"/"+DIR_BOOKS, "");
-    					publishProgress("Добавлен: "+cur);
+    					publishProgress("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: "+cur);
     					}
        				}
     			
@@ -558,7 +565,7 @@ protected void onResume() {
 private void addBooksFromPath(){
  // TODO Auto-generated method stub
 	 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-     builder.setTitle("Поиск книг в каталоге:");
+     builder.setTitle("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:");
   
         input = new EditText(this);
 		input.setId(ID_DIALOGNOTOKEN);
@@ -604,9 +611,70 @@ private void addBooksFromPath(){
 
 //TODO Search actions
 public void onClickSearchDb(View v) {
-		Toast.makeText(this.getApplicationContext(), "Need do realisation of search actions", Toast.LENGTH_SHORT).show();
-		
-}	
+
+    LinearLayout layout = new LinearLayout(this);
+    layout.setOrientation(LinearLayout.VERTICAL);
+    layout.setGravity(Gravity.CENTER_HORIZONTAL);
+    final EditText input = new EditText(this);
+    layout.setPadding(10, 0, 10, 0);
+    input.setHint("Book title");
+    input.setMaxLines(1);
+    input.setFocusable(true);
+    input.setText("");
+    layout.addView(input);
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle("Search book");
+
+    builder.setView(layout);
+
+    builder.setPositiveButton("Search", new DialogInterface.OnClickListener() {
+
+        public void onClick(DialogInterface dialog, int whichButton) {
+            if (dbHelper != null) {
+                findViewById(R.id.loading_indicator).setVisibility(View.VISIBLE);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final ArrayList<Item> it = dbHelper.findItems(TextUtils.isEmpty(input.getText()) ? "%" : input.getText().toString());
+                        if (it.isEmpty()) {
+                            uiHandler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    findViewById(R.id.loading_indicator).setVisibility(View.GONE);
+                                    Toast.makeText(getApplicationContext(), "No items found", Toast.LENGTH_SHORT).show();
+                                }
+                            }, 10);
+
+                        } else {
+                            uiHandler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    items.clear();
+                                    for(Item cur: it) {
+                                        items.add(cur);
+                                    }
+                                    adapter.notifyDataSetChanged();
+                                    findViewById(R.id.loading_indicator).setVisibility(View.GONE);
+                                }
+                            }, 10);
+                        }
+                    }
+                }).start();
+            }
+            return;
+        }
+    });
+
+    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+        public void onClick(DialogInterface dialog, int which) {
+            return;
+        }
+    });
+
+    builder.create().show();
+}
 
 
 
@@ -632,7 +700,7 @@ public void onClickSort(View v){
 			
 		})
 				
-		.setPositiveButton("Применить", new OnClickListener(){
+		.setPositiveButton("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", new OnClickListener(){
 
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
@@ -692,8 +760,8 @@ private boolean ifFileExists(String filename){
   public void runDialogEmptySearch(){
 		
 		AlertDialog.Builder dialogFont = new AlertDialog.Builder(this);
-		dialogFont.setTitle("Внимание!")
-		.setMessage("Новые книги не найдены. Добавьте книги на карту памяти и повторите сканирование")
+		dialogFont.setTitle("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!")
+		.setMessage("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
 			
 				
 		.setPositiveButton("Ok", new OnClickListener(){
